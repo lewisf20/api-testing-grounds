@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import classes from './GuardianContainer.module.css';
+
+import Header from '../../components/Guardian/GuardianHeader';
+import Article from '../../components/Guardian/GuardianArticle';
 
 const GuardianContainer = (props) => {
 	const api_key = process.env.REACT_APP_GUARDIAN_API_KEY;
@@ -6,7 +10,7 @@ const GuardianContainer = (props) => {
 
 	//State
 	const [searchString, setSearchString] = useState('');
-	const [response, setResponse] = useState(null);
+	const [response, setResponse] = useState([]);
 
 	useEffect(() => {
 		//make network request
@@ -31,19 +35,27 @@ const GuardianContainer = (props) => {
 				}
 			);
 	};
+
 	return (
-		<div>
-			<h1>Guardian</h1>
-			<label htmlFor="">Search</label>
-			<input
-				type="search"
-				name="search"
-				value={searchString}
-				onChange={(e) => setSearchString(e.target.value)}
+		<div className={classes.GuardianContainer}>
+			<Header
+				searchString={searchString}
+				setSearch={setSearchString}
+				search={getSearchResults}
 			/>
-			<button type="submit" onClick={getSearchResults}>
-				Search
-			</button>
+			<div className={classes.ArticleContainer}>
+				{response.map((article, index) => {
+					return (
+						<Article
+							key={article.id}
+							title={article.webTitle}
+							url={article.webUrl}
+							tag={article.sectionName}
+							date={article.webPublicationDate}
+						/>
+					);
+				})}
+			</div>
 		</div>
 	);
 };

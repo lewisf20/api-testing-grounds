@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import './App.css';
+import classes from './App.module.css';
 
 import Home from './layouts/HomeContainer/HomeContainer';
 import Guardian from './layouts/GuardianContainer/GuardianContainer';
@@ -8,7 +8,7 @@ import Guardian from './layouts/GuardianContainer/GuardianContainer';
 function App() {
 	return (
 		<Router>
-			<div className="App">
+			<div className={classes.App}>
 				<nav>
 					<ul>
 						<li>

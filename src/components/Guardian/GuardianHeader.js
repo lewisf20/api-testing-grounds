@@ -13,9 +13,27 @@ const GuardianHeader = (props) => {
 					value={props.searchString}
 					onChange={(e) => props.setSearch(e.target.value)}
 				/>
-				<button type="submit" onClick={props.search}>
+
+				<button
+					type="submit"
+					onClick={() => {
+						props.setLoading(true);
+						props.search();
+					}}
+				>
 					Search
 				</button>
+				<p>How many results?</p>
+				<input
+					type="number"
+					name="number-results"
+					placeholder="10"
+					className={classes.NumberInput}
+					max={50}
+					min={1}
+					onChange={(e) => props.setPages(e.target.value)}
+					value={props.pages}
+				/>
 			</div>
 		</div>
 	);

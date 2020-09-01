@@ -4,6 +4,7 @@
 .SearchContainer {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	gap: 1rem;
 	margin: 1rem 0;
 }
@@ -23,4 +24,7 @@ button:hover {
 
 input {
 	padding: 0.4rem 0.6rem;
+}
+.NumberInput {
+	width: 40px;
 }

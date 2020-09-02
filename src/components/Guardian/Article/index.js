@@ -11,34 +11,34 @@ const ArticlePage = (props) => {
 
 	//state
 	const [article, setArticle] = useState({});
-	const [isLoading, setIsLoading] = useState(true);
+	const [error, setError] = useState(false);
 
-	const getArticleInformation = () => {
+	//Load article
+	useEffect(() => {
+		//get Article Information
 		const url =
 			base_url +
 			id +
 			`?show-fields=body,thumbnail&show-tags=contributor&api-key=${api_key}`;
 		fetch(url)
 			.then((res) => res.json())
-			.then(
-				(res) => {
-					const results = res.response.content;
-					console.log(res.response.content.tags[0].webTitle);
-					setArticle(results);
-				},
-				(error) => {
-					console.error(error);
-				}
-			);
-		setIsLoading(false);
-	};
+			.then((res) => {
+				const results = res.response.content;
+				console.log(res.response.content);
+				if (results.tags.length === 0) setError(true);
+				setArticle(results);
+			})
+			.catch((err) => {
+				console.error(err);
+				setError(true);
+			});
 
-	//Load article
-	useEffect(() => {
-		getArticleInformation();
-	}, []);
-
-	//console.log(article);
+		//Cleanup when component unmounts
+		return () => {
+			console.log('Article cleanup...');
+			setArticle({});
+		};
+	}, [api_key, base_url, id]);
 
 	return (
 		<div className={classes.Article}>
@@ -54,13 +54,17 @@ const ArticlePage = (props) => {
 					<div className={classes.details}>
 						<p className={classes.contributor}>
 							By{' '}
-							<a
-								href={article.tags[0].webUrl}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								{article.tags[0].webTitle}
-							</a>
+							{error ? (
+								'unknown'
+							) : (
+								<a
+									href={article.tags[0].webUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									{article.tags[0].webTitle}
+								</a>
+							)}
 						</p>
 						<p className={classes.date}>
 							{new Date(article.webPublicationDate).toDateString()}

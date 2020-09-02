@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import classes from './GuardianContainer.module.css';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -41,6 +41,40 @@ const GuardianContainer = (props) => {
 			getSearchResults();
 		}
 	};
+	//Save to local storage
+	const saveLocalResponse = useCallback(() => {
+		localStorage.setItem('response', JSON.stringify(response));
+	}, [response]);
+
+	//get from local storage
+	const getLocalResponse = () => {
+		if (localStorage.getItem('response') === null) {
+			localStorage.setItem('response', JSON.stringify([]));
+		} else {
+			let responseLocal = JSON.parse(localStorage.getItem('response'));
+			setResponse(responseLocal);
+		}
+	};
+
+	//didMount
+	useEffect(() => {
+		getLocalResponse();
+		//cleanup when component unmounts
+		return () => {
+			console.log('Guardian page cleanup...');
+		};
+	}, []);
+
+	//didUpdate
+	useEffect(() => {
+		console.log('Guardian page didupdate');
+		//save in the callback to update so a page refresh
+		//does not save the response - only when the user
+		//goes back on the page it will be saved..
+		return () => {
+			saveLocalResponse();
+		};
+	}, [response, saveLocalResponse]);
 
 	let content = response.map((article, index) => {
 		return (

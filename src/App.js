@@ -4,6 +4,7 @@ import classes from './App.module.css';
 
 import Home from './layouts/HomeContainer/HomeContainer';
 import Guardian from './layouts/GuardianContainer/GuardianContainer';
+import Article from './components/Guardian/Article';
 
 function App() {
 	return (
@@ -20,10 +21,13 @@ function App() {
 					</ul>
 				</nav>
 				<Switch>
-					<Route path="/guardian">
+					<Route path="/guardian/:id">
+						<Article />
+					</Route>
+					<Route exact path="/guardian">
 						<Guardian />
 					</Route>
-					<Route path="/">
+					<Route exact path="/">
 						<Home />
 					</Route>
 				</Switch>

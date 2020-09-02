@@ -4,6 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Header from '../../components/Guardian/Header';
 import ArticleCard from '../../components/Guardian/Article/Card';
+import { Link } from 'react-router-dom';
 
 const GuardianContainer = (props) => {
 	const api_key = process.env.REACT_APP_GUARDIAN_API_KEY;
@@ -34,18 +35,30 @@ const GuardianContainer = (props) => {
 				}
 			);
 	};
+	const handleKeyPress = (key) => {
+		if (key === 'Enter') {
+			setIsloading(true);
+			getSearchResults();
+		}
+	};
 
 	let content = response.map((article, index) => {
 		return (
-			<ArticleCard
+			<Link
 				key={article.id}
-				title={article.webTitle}
-				url={article.webUrl}
-				tag={article.sectionName}
-				date={article.webPublicationDate}
-				thumbnail={article.fields.thumbnail}
-				body={article.fields.body}
-			/>
+				to={{
+					pathname: `/guardian/${article.id}`,
+				}}
+			>
+				<ArticleCard
+					title={article.webTitle}
+					url={article.webUrl}
+					tag={article.sectionName}
+					date={article.webPublicationDate}
+					thumbnail={article.fields.thumbnail}
+					body={article.fields.body}
+				/>
+			</Link>
 		);
 	});
 	if (isLoading) content = <CircularProgress size={80} color="secondary" />;
@@ -59,6 +72,7 @@ const GuardianContainer = (props) => {
 				setLoading={setIsloading}
 				setPages={setPageSize}
 				pages={pageSize}
+				handleKeyPress={handleKeyPress}
 			/>
 			<div className={classes.ArticleContainer}>{content}</div>
 		</div>

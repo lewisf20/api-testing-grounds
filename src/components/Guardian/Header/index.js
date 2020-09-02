@@ -12,6 +12,7 @@ const GuardianHeader = (props) => {
 					name="search"
 					value={props.searchString}
 					onChange={(e) => props.setSearch(e.target.value)}
+					onKeyPress={(e) => props.handleKeyPress(e.key)}
 				/>
 
 				<button

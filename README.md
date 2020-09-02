@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a personal project which uses React JS.
+It will be used to test various different API's across the internet.
+This project was used [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

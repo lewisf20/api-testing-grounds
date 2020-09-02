@@ -15,12 +15,15 @@ const ArticlePage = (props) => {
 
 	const getArticleInformation = () => {
 		const url =
-			base_url + id + `?show-fields=body,thumbnail&api-key=${api_key}`;
+			base_url +
+			id +
+			`?show-fields=body,thumbnail&show-tags=contributor&api-key=${api_key}`;
 		fetch(url)
 			.then((res) => res.json())
 			.then(
 				(res) => {
 					const results = res.response.content;
+					console.log(res.response.content.tags[0].webTitle);
 					setArticle(results);
 				},
 				(error) => {
@@ -35,7 +38,7 @@ const ArticlePage = (props) => {
 		getArticleInformation();
 	}, []);
 
-	console.log(article);
+	//console.log(article);
 
 	return (
 		<div className={classes.Article}>
@@ -47,10 +50,23 @@ const ArticlePage = (props) => {
 						className={classes.mainImage}
 					/>
 					<h1>{article.webTitle}</h1>
-					<p className={classes.date}>
-						{new Date(article.webPublicationDate).toDateString()}
-					</p>
-					<hr />
+					<hr style={{ width: '100%', margin: '1.5rem 0' }} />
+					<div className={classes.details}>
+						<p className={classes.contributor}>
+							By{' '}
+							<a
+								href={article.tags[0].webUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								{article.tags[0].webTitle}
+							</a>
+						</p>
+						<p className={classes.date}>
+							{new Date(article.webPublicationDate).toDateString()}
+						</p>
+					</div>
+					<hr style={{ width: '100%', margin: '1.5rem 0 2rem 0' }} />
 					<div
 						className={classes.body}
 						dangerouslySetInnerHTML={{ __html: article.fields.body }}

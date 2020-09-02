@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './GuardianHeader.module.css';
+import classes from './index.module.css';
 
 const GuardianHeader = (props) => {
 	return (

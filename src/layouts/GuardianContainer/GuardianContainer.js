@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import classes from './GuardianContainer.module.css';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import Header from '../../components/Guardian/GuardianHeader';
-import Article from '../../components/Guardian/GuardianArticle';
+import Header from '../../components/Guardian/Header';
+import ArticleCard from '../../components/Guardian/Article/Card';
 
 const GuardianContainer = (props) => {
 	const api_key = process.env.REACT_APP_GUARDIAN_API_KEY;
 	const base_url = process.env.REACT_APP_GUARDIAN_BASE_URL;
+	const show_fields = 'show-fields=body,thumbnail';
 
 	//State
 	const [searchString, setSearchString] = useState('');
@@ -18,13 +19,13 @@ const GuardianContainer = (props) => {
 	const getSearchResults = () => {
 		const url =
 			base_url +
-			`search?q=${searchString}&page-size=${pageSize}&api-key=${api_key}`;
+			`search?q=${searchString}&page-size=${pageSize}&${show_fields}&api-key=${api_key}`;
 		fetch(url)
 			.then((res) => res.json())
 			.then(
 				(res) => {
 					const results = res.response.results;
-					console.log(results);
+					//console.log(results);
 					setResponse(results);
 					setIsloading(false);
 				},
@@ -33,18 +34,22 @@ const GuardianContainer = (props) => {
 				}
 			);
 	};
+
 	let content = response.map((article, index) => {
 		return (
-			<Article
+			<ArticleCard
 				key={article.id}
 				title={article.webTitle}
 				url={article.webUrl}
 				tag={article.sectionName}
 				date={article.webPublicationDate}
+				thumbnail={article.fields.thumbnail}
+				body={article.fields.body}
 			/>
 		);
 	});
 	if (isLoading) content = <CircularProgress size={80} color="secondary" />;
+
 	return (
 		<div className={classes.GuardianContainer}>
 			<Header

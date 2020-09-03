@@ -19,8 +19,9 @@ const MovieContainer = (props) => {
 
 	const getSearchResults = () => {
 		setIsloading(true);
+
 		const url =
-			base_url + `search/movie?query=${searchString}&api_key=${api_key}`;
+			base_url + `search/movie?query=${searchString}&api_key=${api_key}&page=1`;
 		fetch(url)
 			.then((res) => res.json())
 			.then((res) => {
@@ -44,7 +45,18 @@ const MovieContainer = (props) => {
 	useEffect(() => {
 		//Set title
 		title('The MovieDB API ');
-	});
+		//get list of popular movies
+		const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&sort_by=vote_count.desc&page=1`;
+		fetch(url)
+			.then((res) => res.json())
+			.then((res) => {
+				const results = res.results;
+				setResponse(results);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	}, [title, api_key]);
 
 	let content = response.map((movie, index) => {
 		return (
@@ -66,7 +78,7 @@ const MovieContainer = (props) => {
 			</Link>
 		);
 	});
-	if (isLoading) content = <CircularProgress size={80} color="secondary" />;
+	if (isLoading) content = <CircularProgress size={80} color="primary" />;
 
 	return (
 		<div className={classes.container}>

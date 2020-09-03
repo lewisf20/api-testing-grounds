@@ -33,16 +33,23 @@ const MovieCard = (props) => {
 		return () => {
 			//cleanup
 		};
-	});
+	}, [imagePath]);
 	let content = (
-		<div
-			className={classes.container}
-			style={{ background: imageUrl !== '' ? `url(${imageUrl})` : '#fff' }}
-		>
-			<h2>{title}</h2>
-			<div className={classes.details}>
-				<p>{voteCount}</p>
-				<p>{rating}</p>
+		<div className={classes.wrapper}>
+			<div
+				className={classes.container}
+				style={{
+					background: imageUrl !== '' ? `url(${imageUrl})` : '#fff',
+					backgroundSize: 'cover',
+					backgroundRepeat: 'no-repeat',
+				}}
+			></div>
+			<div className={classes.titleWrapper}>
+				<h2>{title}</h2>
+				<div className={classes.details}>
+					<p>{voteCount}</p>
+					<p>{rating}</p>
+				</div>
 			</div>
 		</div>
 	);
@@ -56,7 +63,7 @@ const MovieCard = (props) => {
 					alignItems: 'center',
 				}}
 			>
-				<CircularProgress size={80} color="secondary" />
+				<CircularProgress size={80} color="primary" />
 			</div>
 		);
 

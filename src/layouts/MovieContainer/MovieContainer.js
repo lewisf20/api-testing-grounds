@@ -5,6 +5,7 @@ import classes from './MovieContainer.module.css';
 import SearchBar from '../../components/Movie/SearchBar/SearchBar';
 import MovieCard from '../../components/Movie/Card/MovieCard';
 import { CircularProgress } from '@material-ui/core';
+import Pagination from '@material-ui/lab/Pagination';
 import { Link } from 'react-router-dom';
 
 const MovieContainer = (props) => {
@@ -16,6 +17,8 @@ const MovieContainer = (props) => {
 	const [searchString, setSearchString] = useState('');
 	const [response, setResponse] = useState([]);
 	const [isLoading, setIsloading] = useState(false);
+	const [pageCount, setPageCount] = useState(10);
+	const [currentPage, setCurrentPage] = useState(1);
 
 	const getSearchResults = () => {
 		setIsloading(true);
@@ -26,7 +29,8 @@ const MovieContainer = (props) => {
 			.then((res) => res.json())
 			.then((res) => {
 				const results = res.results;
-				console.log(results);
+				console.log(res.total_pages);
+				setPageCount(1);
 				setIsloading(false);
 				setResponse(results);
 			})
@@ -46,17 +50,18 @@ const MovieContainer = (props) => {
 		//Set title
 		title('The MovieDB API ');
 		//get list of popular movies
-		const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&sort_by=vote_count.desc&page=1`;
+		const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&sort_by=vote_count.desc&page=${currentPage}`;
 		fetch(url)
 			.then((res) => res.json())
 			.then((res) => {
 				const results = res.results;
+				setPageCount(res.total_pages);
 				setResponse(results);
 			})
 			.catch((err) => {
 				console.error(err);
 			});
-	}, [title, api_key]);
+	}, [title, api_key, currentPage]);
 
 	let content = response.map((movie, index) => {
 		return (
@@ -89,6 +94,17 @@ const MovieContainer = (props) => {
 				handleKeyPress={handleKeyPress}
 			/>
 			<div className={classes.movieList}>{content}</div>
+			<div className={classes.pagination}>
+				<Pagination
+					count={pageCount}
+					color="primary"
+					page={currentPage}
+					onChange={(e, page) => {
+						setCurrentPage(page);
+						window.scrollTo({ top: 0 });
+					}}
+				/>
+			</div>
 		</div>
 	);
 };

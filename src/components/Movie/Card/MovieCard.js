@@ -15,23 +15,25 @@ const MovieCard = (props) => {
 	useEffect(() => {
 		//Get the poster image for the movie
 		const url = base_url + imagePath;
-		//if imagepath has a value
+		let timer;
 		if (imagePath) {
-			fetch(url)
-				.then((res) => {
-					console.log(res.url);
-					setImageUrl(res.url);
-					setIsLoading(false);
-				})
-				.catch((err) => {
-					console.error(err);
-				});
+			timer = setTimeout(() => {
+				fetch(url)
+					.then((res) => {
+						setImageUrl(res.url);
+						setIsLoading(false);
+					})
+					.catch((err) => {
+						console.error(err);
+					});
+			}, 1000);
 		} else {
 			setIsLoading(false);
 		}
 
 		return () => {
-			//cleanup
+			//cleanup - cancel subscription
+			clearTimeout(timer);
 		};
 	}, [imagePath]);
 	let content = (

@@ -3,10 +3,18 @@
 
 .movieList {
 	width: 100%;
+	min-height: 100vh;
 	margin-top: 4rem;
 	padding: 1rem;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	gap: 4rem;
+	gap: 2rem;
+}
+
+.pagination {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin: 2rem 0 8rem 0;
 }

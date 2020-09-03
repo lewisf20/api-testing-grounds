@@ -24,6 +24,9 @@ const HomeContainer = (props) => {
 					<li>
 						<Link to="/guardian">Guardian API</Link>
 					</li>
+					<li>
+						<Link to="/movies">The MovieDB API</Link>
+					</li>
 				</ul>
 			</div>
 		</div>

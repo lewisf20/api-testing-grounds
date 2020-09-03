@@ -1,3 +1,21 @@
 .HomeContainer {
 	margin: 3rem 0;
 }
+.projectDetail {
+	margin: 1.5rem 0;
+}
+
+.HomeContainer ul {
+	display: flex;
+	justify-content: center;
+
+	margin: 1rem 0;
+}
+
+.HomeContainer li {
+	list-style: decimal;
+	list-style-position: inside;
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 5px 10px;
+}

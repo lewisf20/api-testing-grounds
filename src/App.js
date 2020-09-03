@@ -15,9 +15,6 @@ function App() {
 						<li>
 							<Link to="/">Home</Link>
 						</li>
-						<li>
-							<Link to="/guardian">Guardian</Link>
-						</li>
 					</ul>
 				</nav>
 				<Switch>

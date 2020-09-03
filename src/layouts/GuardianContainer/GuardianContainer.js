@@ -33,7 +33,10 @@ const GuardianContainer = (props) => {
 				(error) => {
 					console.err(error);
 				}
-			);
+			)
+			.catch((err) => {
+				console.error(err);
+			});
 	};
 	const handleKeyPress = (key) => {
 		if (key === 'Enter') {
@@ -70,7 +73,7 @@ const GuardianContainer = (props) => {
 		console.log('Guardian page didupdate');
 		//save in the callback to update so a page refresh
 		//does not save the response - only when the user
-		//goes back on the page it will be saved..
+		//presses back on the browser it will be saved..
 		return () => {
 			saveLocalResponse();
 		};

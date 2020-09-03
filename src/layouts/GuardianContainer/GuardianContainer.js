@@ -10,6 +10,7 @@ const GuardianContainer = (props) => {
 	const api_key = process.env.REACT_APP_GUARDIAN_API_KEY;
 	const base_url = process.env.REACT_APP_GUARDIAN_BASE_URL;
 	const show_fields = 'show-fields=body,thumbnail';
+	const { title } = props;
 
 	//State
 	const [searchString, setSearchString] = useState('');
@@ -61,12 +62,15 @@ const GuardianContainer = (props) => {
 
 	//didMount
 	useEffect(() => {
+		//Set title of page in the navigation..
+		title('Guardian API');
 		getLocalResponse();
+
 		//cleanup when component unmounts
 		return () => {
 			console.log('Guardian page cleanup...');
 		};
-	}, []);
+	}, [title]);
 
 	//didUpdate
 	useEffect(() => {

@@ -12,10 +12,20 @@
 	margin: 1rem 0;
 }
 
+.HomeContainer a {
+	color: royalblue;
+}
+
 .HomeContainer li {
 	list-style: decimal;
 	list-style-position: inside;
 	border: 2px solid black;
+
 	border-radius: 5px;
 	padding: 5px 10px;
+	transition: 0.25s ease;
+}
+
+.HomeContainer li:hover {
+	opacity: 0.6;
 }

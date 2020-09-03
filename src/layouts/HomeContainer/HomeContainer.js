@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './HomeContainer.module.css';
 import { Link } from 'react-router-dom';
 
 const HomeContainer = (props) => {
+	const { title } = props;
+
+	//Update title upon first render
+	useEffect(() => {
+		title('API Testing Grounds');
+	}, [title]);
+
 	return (
 		<div className={classes.HomeContainer}>
 			<h1>Made By Lewis Frater</h1>

@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './index.module.css';
 
 const GuardianHeader = (props) => {
 	return (
 		<div className={classes.Header}>
-			<h1>Guardian</h1>
 			<p>Search for articles from the guardian!</p>
 			<div className={classes.SearchContainer}>
 				<input

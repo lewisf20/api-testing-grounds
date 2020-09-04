@@ -1,12 +1,12 @@
 import React from 'react';
 import classes from './index.module.css';
+import { TextField, Button, MenuItem } from '@material-ui/core';
 
 const GuardianHeader = (props) => {
 	return (
 		<div className={classes.Header}>
-			<p>Search for articles from the guardian!</p>
 			<div className={classes.SearchContainer}>
-				<input
+				<TextField
 					type="search"
 					name="search"
 					value={props.searchString}
@@ -14,7 +14,7 @@ const GuardianHeader = (props) => {
 					onKeyPress={(e) => props.handleKeyPress(e.key)}
 				/>
 
-				<button
+				<Button
 					type="submit"
 					onClick={() => {
 						props.setLoading(true);
@@ -22,18 +22,18 @@ const GuardianHeader = (props) => {
 					}}
 				>
 					Search
-				</button>
-				<p>How many results?</p>
-				<input
-					type="number"
-					name="number-results"
-					placeholder="10"
-					className={classes.NumberInput}
-					max={50}
-					min={1}
-					onChange={(e) => props.setPages(e.target.value)}
+				</Button>
+				<TextField
+					id="select"
+					label="Results"
 					value={props.pages}
-				/>
+					select
+					onChange={(e) => props.setPages(e.target.value)}
+				>
+					<MenuItem value="10">10</MenuItem>
+					<MenuItem value="25">25</MenuItem>
+					<MenuItem value="50">50</MenuItem>
+				</TextField>
 			</div>
 		</div>
 	);

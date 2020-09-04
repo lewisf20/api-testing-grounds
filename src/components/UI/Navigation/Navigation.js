@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import classes from './Navigation.module.css';
 
+import { Button } from '@material-ui/core';
+
 //Import components
 import Home from '../../../layouts/HomeContainer/HomeContainer';
+import Menu from '../Menu/Menu';
 //Guardian API
 import Guardian from '../../../layouts/GuardianContainer/GuardianContainer';
 import Article from '../../Guardian/Article';
@@ -17,11 +20,22 @@ const Navigation = (props) => {
 	return (
 		<>
 			<nav className={classes.Navigation}>
-				<li className={classes.link}>
-					<Link to="/"> Home </Link>
-				</li>
+				<Button variant="outlined" color="primary">
+					<Link to="/" style={{ color: 'royalblue' }}>
+						Home
+					</Link>
+				</Button>
 				<h1>{title}</h1>
+				<Menu>
+					<Link to="/guardian" style={{ color: 'royalblue' }}>
+						Guardian API
+					</Link>
+					<Link to="/movies" style={{ color: 'royalblue' }}>
+						MovieDB API
+					</Link>
+				</Menu>
 			</nav>
+
 			<Switch>
 				<Route path="/guardian/:id">
 					<Article />

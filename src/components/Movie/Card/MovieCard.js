@@ -3,6 +3,8 @@ import classes from './MovieCard.module.css';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { CircularProgress } from '@material-ui/core';
+import StarTwoToneIcon from '@material-ui/icons/StarTwoTone';
+import ThumbsUpDownTwoToneIcon from '@material-ui/icons/ThumbsUpDownTwoTone';
 
 const MovieCard = (props) => {
 	const { id, title, overview, release, voteCount, rating, imagePath } = props;
@@ -49,8 +51,14 @@ const MovieCard = (props) => {
 			<div className={classes.titleWrapper}>
 				<h2>{title}</h2>
 				<div className={classes.details}>
-					<p>{voteCount}</p>
-					<p>{rating}</p>
+					<span>
+						<ThumbsUpDownTwoToneIcon color="primary" />
+						<p>{voteCount}</p>
+					</span>
+					<span>
+						<StarTwoToneIcon color="primary" />
+						<p>{rating}</p>
+					</span>
 				</div>
 			</div>
 		</div>

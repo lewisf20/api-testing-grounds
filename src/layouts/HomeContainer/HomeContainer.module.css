@@ -7,7 +7,9 @@
 
 .HomeContainer ul {
 	display: flex;
-	justify-content: center;
+	align-items: center;
+	justify-content: stretch;
+	flex-direction: column;
 
 	margin: 1rem 0;
 }
@@ -16,16 +18,7 @@
 	color: royalblue;
 }
 
-.HomeContainer li {
-	list-style: decimal;
-	list-style-position: inside;
-	border: 2px solid black;
-
-	border-radius: 5px;
-	padding: 5px 10px;
-	transition: 0.25s ease;
-}
-
-.HomeContainer li:hover {
-	opacity: 0.6;
+.btn {
+	font-size: 12px;
+	margin: 0.5rem 0;
 }

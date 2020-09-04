@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import classes from './HomeContainer.module.css';
 import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 const HomeContainer = (props) => {
 	const { title } = props;
@@ -21,12 +22,12 @@ const HomeContainer = (props) => {
 			<div>
 				<h2>List of Current APIs</h2>
 				<ul>
-					<li>
-						<Link to="/guardian">Guardian API</Link>
-					</li>
-					<li>
-						<Link to="/movies">The MovieDB API</Link>
-					</li>
+					<Button color="primary" className={classes.btn}>
+						<Link to="/guardian">Guardian</Link>
+					</Button>
+					<Button color="primary" className={classes.btn}>
+						<Link to="/movies">MovieDB</Link>
+					</Button>
 				</ul>
 			</div>
 		</div>

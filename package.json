@@ -1,7 +1,6 @@
 {
 	"name": "api-testing-grounds",
 	"version": "0.1.0",
-	"homepage": "https://lewisfrater.co.uk/api-testing-grounds",
 	"private": true,
 	"engines": {
 		"node": "14.4.0",

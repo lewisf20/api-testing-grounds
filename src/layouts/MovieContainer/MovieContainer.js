@@ -29,7 +29,6 @@ const MovieContainer = (props) => {
 			.then((res) => res.json())
 			.then((res) => {
 				const results = res.results;
-				console.log(res.total_pages);
 				setPageCount(1);
 				setIsloading(false);
 				setResponse(results);
@@ -50,7 +49,7 @@ const MovieContainer = (props) => {
 		//Set title
 		title('The MovieDB API ');
 		//get list of popular movies
-		const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&sort_by=vote_count.desc&page=${currentPage}`;
+		const url = `${base_url}discover/movie?api_key=${api_key}&include_adult=false&language=en-US&sort_by=vote_count.desc&page=${currentPage}`;
 		fetch(url)
 			.then((res) => res.json())
 			.then((res) => {

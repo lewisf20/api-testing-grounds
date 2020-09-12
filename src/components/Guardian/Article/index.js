@@ -24,7 +24,7 @@ const ArticlePage = (props) => {
 			.then((res) => res.json())
 			.then((res) => {
 				const results = res.response.content;
-				console.log(res.response.content);
+				//console.log(res.response.content);
 				if (results.tags.length === 0) setError(true);
 				setArticle(results);
 			})

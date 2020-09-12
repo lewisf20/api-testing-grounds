@@ -3,6 +3,7 @@ import classes from './HomeContainer.module.css';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import Typed from 'react-typed';
+import Particles from 'react-particles-js';
 
 const HomeContainer = (props) => {
 	const { title } = props;
@@ -14,12 +15,62 @@ const HomeContainer = (props) => {
 
 	return (
 		<div className={classes.HomeContainer}>
+			<Particles
+				className={classes.particles}
+				params={{
+					particles: {
+						color: {
+							value: '#F4B23F',
+						},
+						size: {
+							random: true,
+							value: 8,
+						},
+						number: {
+							value: 50,
+							density: {
+								enable: false,
+								value_area: 400,
+							},
+						},
+						move: {
+							direction: 'none',
+							enable: true,
+							outMode: 'bounce',
+							random: true,
+							speed: 4,
+							straight: false,
+						},
+						shape: {
+							type: ['star'],
+						},
+						line_linked: {
+							enable: true,
+							distance: 100,
+							color: '#3498db',
+							opacity: 1,
+							width: 5,
+						},
+						opacity: {
+							value: 1,
+							random: false,
+							anim: {
+								enable: false,
+								speed: 1,
+								opacity_min: 0.1,
+								sync: false,
+							},
+						},
+					},
+				}}
+			/>
 			<div
 				style={{
 					display: 'flex',
 					height: '70px',
 					flexDirection: 'column',
 					justifyContent: 'space-between',
+					marginTop: '3rem',
 				}}
 			>
 				<Typed

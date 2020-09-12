@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import classes from './index.module.css';
+import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 const ArticlePage = (props) => {
 	let location = useLocation();
@@ -42,6 +44,17 @@ const ArticlePage = (props) => {
 
 	return (
 		<div className={classes.Article}>
+			<div className={classes.backBtn}>
+				<Link
+					to={{
+						pathname: `/guardian`,
+					}}
+				>
+					<Button color="primary" variant="contained">
+						Back
+					</Button>
+				</Link>
+			</div>
 			{article.fields ? (
 				<>
 					<img

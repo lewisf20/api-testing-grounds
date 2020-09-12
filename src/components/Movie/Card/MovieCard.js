@@ -7,7 +7,7 @@ import StarTwoToneIcon from '@material-ui/icons/StarTwoTone';
 import ThumbsUpDownTwoToneIcon from '@material-ui/icons/ThumbsUpDownTwoTone';
 
 const MovieCard = (props) => {
-	const { id, title, overview, release, voteCount, rating, imagePath } = props;
+	const { title, voteCount, rating, imagePath } = props;
 	const base_url = 'https://image.tmdb.org/t/p/w300';
 
 	//STATE

@@ -60,7 +60,7 @@ const MovieContainer = (props) => {
 			.catch((err) => {
 				console.error(err);
 			});
-	}, [title, api_key, currentPage]);
+	}, [title, api_key, currentPage, base_url]);
 
 	let content = response.map((movie, index) => {
 		return (
@@ -73,8 +73,6 @@ const MovieContainer = (props) => {
 				<MovieCard
 					id={movie.id}
 					title={movie.title}
-					overview={movie.overview}
-					release={movie.release_date}
 					voteCount={movie.vote_count}
 					rating={movie.vote_average}
 					imagePath={movie.poster_path}

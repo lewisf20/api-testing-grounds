@@ -25,6 +25,7 @@
 	width: 80vw;
 	margin: 4rem 0;
 }
+
 .poster {
 	flex: 1;
 }
@@ -59,4 +60,19 @@
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr 1fr;
 	align-items: center;
+}
+
+.backBtn {
+	position: fixed;
+	top: 100px;
+	left: 50px;
+}
+
+@media screen and (max-width: 700px) {
+	.movieContainer {
+		flex-direction: column;
+	}
+	.ratings {
+		margin-top: 4rem;
+	}
 }

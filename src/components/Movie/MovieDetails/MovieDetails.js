@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import classes from './MovieDetails.module.css';
-
+import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faClock,
@@ -14,7 +15,7 @@ import { CircularProgress } from '@material-ui/core';
 const MovieDetails = (props) => {
 	const api_key = process.env.REACT_APP_MOVIE_API_KEY;
 	const base_url = process.env.REACT_APP_MOVIE_BASE_URL;
-	const image_url = 'https://image.tmdb.org/t/p/original';
+	//const image_url = 'https://image.tmdb.org/t/p/original';
 	const location = useLocation();
 	const movie_id = location.pathname.substring(8); // remove first part of pathname '/movies/' to get id from path parameters
 
@@ -55,6 +56,18 @@ const MovieDetails = (props) => {
 	if (!isLoading)
 		content = (
 			<div className={classes.container}>
+				<div className={classes.backBtn}>
+					<Link
+						to={{
+							pathname: `/movies`,
+						}}
+					>
+						<Button color="primary" variant="contained">
+							Back
+						</Button>
+					</Link>
+				</div>
+
 				<div
 					className={classes.bgImage}
 					style={{

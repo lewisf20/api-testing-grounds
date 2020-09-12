@@ -1,6 +1,8 @@
 .container {
 	width: 100%;
 	position: relative;
+	display: flex;
+	flex-direction: column;
 }
 .Article {
 	width: 60%;
@@ -58,7 +60,14 @@
 }
 
 .backBtn {
-	position: absolute;
-	top: 0px;
-	left: 50px;
+	margin-top: 1rem;
+}
+
+@media screen and (max-width: 700px) {
+	.container {
+		font-size: 75%;
+	}
+	.Article {
+		width: 90%;
+	}
 }

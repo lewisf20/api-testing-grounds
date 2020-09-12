@@ -1,11 +1,16 @@
+.container {
+	width: 100%;
+	position: relative;
+}
 .Article {
-	width: 60vw;
+	width: 60%;
 	margin: 3rem auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	text-align: left;
+	position: relative;
 }
 
 .mainImage {
@@ -53,7 +58,7 @@
 }
 
 .backBtn {
-	position: fixed;
-	top: 100px;
+	position: absolute;
+	top: 0px;
 	left: 50px;
 }

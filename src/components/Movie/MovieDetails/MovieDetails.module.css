@@ -3,6 +3,7 @@
 	min-height: 100vh;
 	position: relative;
 	z-index: 1;
+	position: relative;
 
 	display: flex;
 	justify-content: center;
@@ -63,8 +64,8 @@
 }
 
 .backBtn {
-	position: fixed;
-	top: 100px;
+	position: absolute;
+	top: 4rem;
 	left: 50px;
 }
 

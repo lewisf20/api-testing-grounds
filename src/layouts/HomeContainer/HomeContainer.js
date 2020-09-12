@@ -80,11 +80,12 @@ const HomeContainer = (props) => {
 				/>
 				<Typed
 					strings={[
-						'This ReactJS web application has been created to test different APIs on the internet.',
+						'<p>This ReactJS web application has been created to test different APIs on the internet.<p>',
 					]}
 					typeSpeed={20}
 					showCursor={false}
 					startDelay={1500}
+					style={{ fontWeight: 'bold' }}
 				/>
 			</div>
 
@@ -95,12 +96,20 @@ const HomeContainer = (props) => {
 			>
 				<h2>List of Current APIs</h2>
 				<ul>
-					<Button color="primary" className={classes.btn}>
-						<Link to="/guardian">Guardian</Link>
-					</Button>
-					<Button color="primary" className={classes.btn}>
-						<Link to="/movies">MovieDB</Link>
-					</Button>
+					<Link to="/guardian">
+						<Button
+							color="secondary"
+							variant="contained"
+							className={classes.btn}
+						>
+							Guardian
+						</Button>
+					</Link>
+					<Link to="/movies">
+						<Button color="primary" variant="contained" className={classes.btn}>
+							MovieDB
+						</Button>
+					</Link>
 				</ul>
 			</div>
 		</div>

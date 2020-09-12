@@ -3,8 +3,8 @@ import classes from './MovieCard.module.css';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { CircularProgress } from '@material-ui/core';
-import StarTwoToneIcon from '@material-ui/icons/StarTwoTone';
-import ThumbsUpDownTwoToneIcon from '@material-ui/icons/ThumbsUpDownTwoTone';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const MovieCard = (props) => {
 	const { title, voteCount, rating, imagePath } = props;
@@ -47,16 +47,20 @@ const MovieCard = (props) => {
 					backgroundSize: 'cover',
 					backgroundRepeat: 'no-repeat',
 				}}
-			></div>
+			>
+				{imageUrl !== '' ? null : (
+					<h1 style={{ margin: 'auto 0' }}>Image N/A</h1>
+				)}
+			</div>
 			<div className={classes.titleWrapper}>
 				<h2>{title}</h2>
 				<div className={classes.details}>
 					<span>
-						<ThumbsUpDownTwoToneIcon color="primary" />
+						<FontAwesomeIcon icon={faUser} color="black" />
 						<p>{voteCount}</p>
 					</span>
 					<span>
-						<StarTwoToneIcon color="primary" />
+						<FontAwesomeIcon icon={faStar} color="gold" />
 						<p>{rating}</p>
 					</span>
 				</div>

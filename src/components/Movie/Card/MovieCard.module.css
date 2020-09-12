@@ -31,11 +31,10 @@
 	flex-direction: column;
 	justify-content: space-evenly;
 	height: 80px;
+	max-height: 100px;
 	width: 225px;
-	border: 1px solid royalblue;
-	border-top: none;
-	border-bottom-right-radius: 8px;
-	border-bottom-left-radius: 8px;
+	background-color: #ecf0f1;
+	border-radius: 6px;
 }
 
 .details {

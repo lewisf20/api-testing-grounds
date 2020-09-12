@@ -20,11 +20,11 @@ const Navigation = (props) => {
 	return (
 		<>
 			<nav className={classes.Navigation}>
-				<Button variant="outlined" color="primary">
-					<Link to="/" style={{ color: 'royalblue' }}>
+				<Link to="/" style={{ color: 'royalblue' }}>
+					<Button variant="outlined" color="primary">
 						Home
-					</Link>
-				</Button>
+					</Button>
+				</Link>
 				<h1>{title}</h1>
 				<Menu>
 					<Link to="/guardian" style={{ color: 'royalblue' }}>

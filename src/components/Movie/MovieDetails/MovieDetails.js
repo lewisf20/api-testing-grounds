@@ -62,7 +62,7 @@ const MovieDetails = (props) => {
 							pathname: `/movies`,
 						}}
 					>
-						<Button color="primary" variant="contained">
+						<Button color="secondary" variant="contained">
 							Back
 						</Button>
 					</Link>

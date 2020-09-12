@@ -43,55 +43,57 @@ const ArticlePage = (props) => {
 	}, [api_key, base_url, id]);
 
 	return (
-		<div className={classes.Article}>
+		<div className={classes.container}>
 			<div className={classes.backBtn}>
 				<Link
 					to={{
 						pathname: `/guardian`,
 					}}
 				>
-					<Button color="primary" variant="contained">
+					<Button color="secondary" variant="contained">
 						Back
 					</Button>
 				</Link>
 			</div>
-			{article.fields ? (
-				<>
-					<img
-						src={article.fields.thumbnail}
-						alt="main pic for article"
-						className={classes.mainImage}
-					/>
-					<h1>{article.webTitle}</h1>
-					<hr style={{ width: '100%', margin: '1.5rem 0' }} />
-					<div className={classes.details}>
-						<p className={classes.contributor}>
-							By{' '}
-							{error ? (
-								'unknown'
-							) : (
-								<a
-									href={article.tags[0].webUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									{article.tags[0].webTitle}
-								</a>
-							)}
-						</p>
-						<p className={classes.date}>
-							{new Date(article.webPublicationDate).toDateString()}
-						</p>
-					</div>
-					<hr style={{ width: '100%', margin: '1.5rem 0 2rem 0' }} />
-					<div
-						className={classes.body}
-						dangerouslySetInnerHTML={{ __html: article.fields.body }}
-					></div>
-				</>
-			) : (
-				<CircularProgress size={80} color="secondary" />
-			)}
+			<div className={classes.Article}>
+				{article.fields ? (
+					<>
+						<img
+							src={article.fields.thumbnail}
+							alt="main pic for article"
+							className={classes.mainImage}
+						/>
+						<h1>{article.webTitle}</h1>
+						<hr style={{ width: '100%', margin: '1.5rem 0' }} />
+						<div className={classes.details}>
+							<p className={classes.contributor}>
+								By{' '}
+								{error ? (
+									'unknown'
+								) : (
+									<a
+										href={article.tags[0].webUrl}
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										{article.tags[0].webTitle}
+									</a>
+								)}
+							</p>
+							<p className={classes.date}>
+								{new Date(article.webPublicationDate).toDateString()}
+							</p>
+						</div>
+						<hr style={{ width: '100%', margin: '1.5rem 0 2rem 0' }} />
+						<div
+							className={classes.body}
+							dangerouslySetInnerHTML={{ __html: article.fields.body }}
+						></div>
+					</>
+				) : (
+					<CircularProgress size={80} color="secondary" />
+				)}
+			</div>
 		</div>
 	);
 };

@@ -27,8 +27,16 @@ const GuardianContainer = (props) => {
 			.then(
 				(res) => {
 					const results = res.response.results;
+					//filter results
+					// Content of article is longer than 1000 characters
+					const filteredResults = results.filter((article) => {
+						//console.log(article.fields.body.length);
+						return article.fields.body.length > 1000;
+					});
+
+					//console.log(filteredResults);
 					//console.log(results);
-					setResponse(results);
+					setResponse(filteredResults);
 					setIsloading(false);
 				},
 				(error) => {
